@@ -1,0 +1,191 @@
+<div class="caja-container">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-content">
+            <div class="header-title">
+                <svg class="header-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+                <div>
+                    <h1>Gestión de Caja</h1>
+                    <p class="header-subtitle">Administra la apertura y cierre de caja</p>
+                </div>
+            </div>
+            <div class="estado-badge" id="estado-badge">
+                <div class="badge-dot"></div>
+                <span id="estado-texto">Caja Cerrada</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="caja-layout">
+        <!-- Panel Izquierdo - Controles -->
+        <div class="controles-panel">
+            <!-- Card de Apertura -->
+            <div class="card caja-card" id="card-apertura">
+                <div class="card-header">
+                    <div class="card-icon apertura">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                            <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+                        </svg>
+                    </div>
+                    <div class="card-title">
+                        <h2>Abrir Caja</h2>
+                        <p>Registra el monto inicial para comenzar el día</p>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="montoInicial">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path>
+                            </svg>
+                            Monto Inicial
+                        </label>
+                        <div class="input-group">
+                            <span class="input-prefix">$</span>
+                            <input type="number" id="montoInicial" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+
+                    <button id="abrirCajaBtn" class="btn btn-primary btn-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+                            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+                        </svg>
+                        Abrir Caja
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card de Cierre -->
+            <div class="card caja-card" id="card-cierre">
+                <div class="card-header">
+                    <div class="card-icon cierre">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0110 0v4"></path>
+                        </svg>
+                    </div>
+                    <div class="card-title">
+                        <h2>Cerrar Caja</h2>
+                        <p>Finaliza el día y registra el monto final</p>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="montoCierre">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path>
+                            </svg>
+                            Monto de Cierre
+                        </label>
+                        <div class="input-group">
+                            <span class="input-prefix">$</span>
+                            <input type="number" id="montoCierre" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                    </div>
+
+                    <button id="cerrarCajaBtn" class="btn btn-danger btn-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0110 0v4"></path>
+                        </svg>
+                        Cerrar Caja
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel Derecho - Estado y Resumen -->
+        <div class="estado-panel">
+            <!-- Estado Actual -->
+            <div class="card estado-card">
+                <div class="card-header">
+                    <h2>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Estado Actual
+                    </h2>
+                    <button id="refrescarEstadoBtn" class="btn-icon" title="Refrescar estado">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0118.8-4.3M22 12.5a10 10 0 01-18.8 4.2"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="card-body">
+                    <div id="estado-caja-contenido" class="estado-contenido">
+                        <!-- Se llenará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen de Movimientos -->
+            <div class="card resumen-card">
+                <div class="card-header">
+                    <h2>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"></path>
+                            <path d="M18 17V9"></path>
+                            <path d="M13 17V5"></path>
+                            <path d="M8 17v-3"></path>
+                        </svg>
+                        Resumen de Hoy
+                    </h2>
+                </div>
+
+                <div class="card-body">
+                        <div class="stat-item">
+                            <div class="stat-icon ingresos">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <polyline points="19 12 12 19 5 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Ingresos</span>
+                                <span class="stat-value" id="total-ingresos">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-item">
+                            <div class="stat-icon egresos">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                                    <polyline points="5 12 12 5 19 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Egresos</span>
+                                <span class="stat-value" id="total-egresos">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-item destacado">
+                            <div class="stat-icon total">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-label">Total Esperado</span>
+                                <span class="stat-value total" id="total-esperado">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

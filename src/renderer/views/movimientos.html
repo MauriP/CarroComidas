@@ -1,0 +1,145 @@
+<div class="movimientos-container">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-content">
+            <div class="header-title">
+                <svg class="header-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                <div>
+                    <h1>Movimientos de Caja</h1>
+                    <p class="header-subtitle">Registra ingresos y egresos extras</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="movimientos-layout">
+        <!-- Panel Izquierdo - Formulario -->
+        <div class="formulario-panel">
+            <div class="card formulario-card">
+                <div class="card-header">
+                    <h2>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Nuevo Movimiento
+                    </h2>
+                </div>
+
+                <form id="form-movimiento" class="movimiento-form">
+                    <div class="form-group">
+                        <label for="tipo-movimiento">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                            Tipo de Movimiento
+                        </label>
+                        <select id="tipo-movimiento" name="tipo" required class="input-select tipo-select">
+                            <option value="ingreso">📥 Ingreso</option>
+                            <option value="egreso">📤 Egreso</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monto-movimiento">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path>
+                            </svg>
+                            Monto
+                        </label>
+                        <div class="input-group">
+                            <span class="input-prefix">$</span>
+                            <input type="number" id="monto-movimiento" name="monto" step="0.01" min="0.01" required placeholder="0.00">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="motivo-movimiento">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+                            </svg>
+                            Motivo
+                        </label>
+                        <textarea id="motivo-movimiento" name="motivo" rows="3" placeholder="Describe el motivo del movimiento..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="btn-registrar-movimiento" class="btn btn-primary btn-large">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path>
+                                <path d="M17 21v-8H7v8M7 3v5h8"></path>
+                            </svg>
+                            Registrar Movimiento
+                        </button>
+                        <button type="button" id="btn-limpiar-form" class="btn btn-secondary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                            </svg>
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Panel Derecho - Lista y Resumen -->
+        <div class="lista-panel">
+            <!-- Resumen -->
+            <div class="resumen-movimientos">
+                <div class="resumen-card card ingreso">
+                    <div class="resumen-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="resumen-info">
+                        <span class="resumen-label">Total Ingresos</span>
+                        <span class="resumen-valor" id="total-ingresos">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="resumen-card card egreso">
+                    <div class="resumen-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="19" x2="12" y2="5"></line>
+                            <polyline points="5 12 12 5 19 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="resumen-info">
+                        <span class="resumen-label">Total Egresos</span>
+                        <span class="resumen-valor" id="total-egresos">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Movimientos -->
+            <div class="card movimientos-card">
+                <div class="card-header">
+                    <h2>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+                        </svg>
+                        Movimientos de Hoy
+                    </h2>
+                    <div class="filtro-tipo">
+                        <select id="filtro-tipo" class="select-filtro">
+                            <option value="todos">Todos</option>
+                            <option value="ingreso">Ingresos</option>
+                            <option value="egreso">Egresos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="movimientos-container" class="movimientos-lista">
+                    <!-- Los movimientos se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

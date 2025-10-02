@@ -1,0 +1,278 @@
+<div class="catalogo-container">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-content">
+            <div class="header-title">
+                <svg class="header-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 7H4c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z"></path>
+                    <path d="M12 2v5M12 17v5"></path>
+                </svg>
+                <div>
+                    <h1>Catálogo de Productos</h1>
+                    <p class="header-subtitle">Gestiona tu inventario de productos</p>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="stat-card">
+                    <span class="stat-value" id="total-productos">0</span>
+                    <span class="stat-label">Productos</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="productos-disponibles">0</span>
+                    <span class="stat-label">Disponibles</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario para agregar producto -->
+    <div class="form-section card">
+        <div class="section-header">
+            <h2>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Agregar Nuevo Producto
+            </h2>
+        </div>
+        <form id="form-producto" class="producto-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="nombre">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 7H4c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z"></path>
+                        </svg>
+                        Nombre del Producto
+                    </label>
+                    <input type="text" id="nombre" name="nombre" required 
+                          placeholder="Ej: Hamburguesa Clásica">
+                </div>
+                
+                <div class="form-group">
+                    <label for="categoria">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h7l2 2h7a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"></path>
+                        </svg>
+                        Categoría
+                    </label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Seleccionar categoría</option>
+                        <option value="Hamburguesas">🍔 Hamburguesas</option>
+                        <option value="Bebidas">🥤 Bebidas</option>
+                        <option value="Acompañamientos">🍟 Acompañamientos</option>
+                        <option value="Sandwiches">🥪 Sandwiches</option>
+                        <option value="Postres">🍰 Postres</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path>
+                    </svg>
+                    Descripción
+                </label>
+                <textarea id="descripcion" name="descripcion" rows="3"
+                        placeholder="Descripción detallada del producto..."></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="precio">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path>
+                        </svg>
+                        Precio
+                    </label>
+                    <div class="input-group">
+                        <span class="input-prefix">$</span>
+                        <input type="number" id="precio" name="precio" 
+                            step="0.01" min="0" required placeholder="0.00">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Estado</label>
+                    <label class="switch-container">
+                        <input type="checkbox" id="disponible" name="disponible" checked>
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Producto disponible</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Agregar Producto
+                </button>
+                <button type="button" id="btn-limpiar" class="btn btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+                    </svg>
+                    Limpiar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Lista de productos existentes -->
+    <div class="lista-section card">
+        <div class="section-header">
+            <h2>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 3h7l2 2h9a2 2 0 012 2v10a2 2 0 01-2 2H3a2 2 0 01-2-2V5a2 2 0 012-2z"></path>
+                </svg>
+                Productos Existentes
+            </h2>
+            <div class="section-actions">
+                <div class="search-bar">
+                    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" id="buscar-producto" placeholder="Buscar producto...">
+                </div>
+                <select id="filtro-categoria" class="filter-select">
+                    <option value="">Todas las categorías</option>
+                    <option value="Hamburguesas">🍔 Hamburguesas</option>
+                    <option value="Bebidas">🥤 Bebidas</option>
+                    <option value="Acompañamientos">🍟 Acompañamientos</option>
+                    <option value="Sandwiches">🥪 Sandwiches</option>
+                    <option value="Postres">🍰 Postres</option>
+                </select>
+            </div>
+        </div>
+        <div id="lista-productos" class="productos-grid">
+            <!-- Los productos se cargarán dinámicamente aquí -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Edición -->
+<div id="modal-edicion" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                Editar Producto
+            </h2>
+            <button class="modal-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <form id="form-edicion" class="producto-form">
+            <input type="hidden" id="edicion-id">
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="edicion-nombre">Nombre del Producto</label>
+                    <input type="text" id="edicion-nombre" name="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edicion-categoria">Categoría</label>
+                    <select id="edicion-categoria" name="categoria" required>
+                        <option value="">Seleccionar categoría</option>
+                        <option value="Hamburguesas">🍔 Hamburguesas</option>
+                        <option value="Bebidas">🥤 Bebidas</option>
+                        <option value="Acompañamientos">🍟 Acompañamientos</option>
+                        <option value="Sandwiches">🥪 Sandwiches</option>
+                        <option value="Postres">🍰 Postres</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="edicion-descripcion">Descripción</label>
+                <textarea id="edicion-descripcion" name="descripcion" rows="3"></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="edicion-precio">Precio</label>
+                    <div class="input-group">
+                        <span class="input-prefix">$</span>
+                        <input type="number" id="edicion-precio" name="precio" step="0.01" min="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Estado</label>
+                    <label class="switch-container">
+                        <input type="checkbox" id="edicion-disponible" name="disponible">
+                        <span class="switch-slider"></span>
+                        <span class="switch-label">Producto disponible</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path>
+                        <path d="M17 21v-8H7v8M7 3v5h8"></path>
+                    </svg>
+                    Guardar Cambios
+                </button>
+                <button type="button" class="btn btn-secondary" id="btn-cancelar-edicion">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal de Confirmación -->
+<div id="modal-confirm" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content modal-confirm-content">
+        <div class="confirm-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+        </div>
+        <p id="confirm-texto">¿Estás seguro de que deseas eliminar este producto?</p>
+        <div class="modal-actions">
+            <button id="confirm-si" class="btn btn-danger">Sí, eliminar</button>
+            <button id="confirm-no" class="btn btn-secondary">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+console.log('Vista Catálogo cargada');
+
+// Función para mostrar mensajes
+function mostrarMensaje(mensaje, tipo = 'info') {
+    const div = document.getElementById('mensaje-resultado');
+    if (div) {
+        div.textContent = mensaje;
+        div.className = `mensaje ${tipo}`;
+        div.style.display = 'block';
+        
+        setTimeout(() => {
+            div.style.display = 'none';
+        }, 5000);
+    }
+}
+
+document.getElementById('btn-limpiar')?.addEventListener('click', () => {
+    document.getElementById('form-producto').reset();
+});
+</script>

@@ -1,0 +1,203 @@
+<div class="dashboard-container">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-content">
+            <div class="header-title">
+                <svg class="header-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <div>
+                    <h1>Dashboard</h1>
+                    <p class="header-subtitle">Resumen general de tu negocio</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="filtro-fecha">
+                    <select id="filtro-periodo" class="select-periodo">
+                        <option value="hoy">Hoy</option>
+                        <option value="ayer">Ayer</option>
+                        <option value="semana">Esta Semana</option>
+                        <option value="mes">Este Mes</option>
+                        <option value="personalizado">Personalizado</option>
+                    </select>
+                </div>
+                <button id="refrescar-dashboard" class="btn-icon" title="Refrescar datos">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0118.8-4.3M22 12.5a10 10 0 01-18.8 4.2"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rango de Fechas Personalizado -->
+    <div id="rango-personalizado" class="rango-personalizado" style="display: none;">
+        <div class="card">
+            <div class="rango-inputs">
+                <div class="form-group">
+                    <label for="fecha-inicio">Fecha Inicio</label>
+                    <input type="date" id="fecha-inicio">
+                </div>
+                <div class="form-group">
+                    <label for="fecha-fin">Fecha Fin</label>
+                    <input type="date" id="fecha-fin">
+                </div>
+                <button id="aplicar-rango" class="btn btn-primary">Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Métricas Principales -->
+    <div class="metricas-grid">
+        <div class="metrica-card card ventas">
+            <div class="metrica-header">
+                <div class="metrica-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                        <polyline points="17 6 23 6 23 12"></polyline>
+                    </svg>
+                </div>
+                <span class="metrica-label">Total Ventas</span>
+            </div>
+            <div class="metrica-valor" id="total-ventas-dashboard">$0.00</div>
+            <div class="metrica-cambio positivo">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                <span id="cambio-ventas">+0%</span>
+            </div>
+        </div>
+
+        <div class="metrica-card card ingresos">
+            <div class="metrica-header">
+                <div class="metrica-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </div>
+                <span class="metrica-label">Ingresos</span>
+            </div>
+            <div class="metrica-valor" id="total-ingresos-dashboard">$0.00</div>
+            <div class="metrica-cambio positivo">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+                <span id="cambio-ingresos">+0%</span>
+            </div>
+        </div>
+
+        <div class="metrica-card card egresos">
+            <div class="metrica-header">
+                <div class="metrica-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="19" x2="12" y2="5"></line>
+                        <polyline points="5 12 12 5 19 12"></polyline>
+                    </svg>
+                </div>
+                <span class="metrica-label">Egresos</span>
+            </div>
+            <div class="metrica-valor" id="total-egresos-dashboard">$0.00</div>
+            <div class="metrica-cambio negativo">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <span id="cambio-egresos">-0%</span>
+            </div>
+        </div>
+
+        <div class="metrica-card card balance">
+            <div class="metrica-header">
+                <div class="metrica-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                </div>
+                <span class="metrica-label">Balance Neto</span>
+            </div>
+            <div class="metrica-valor" id="balance-neto-dashboard">$0.00</div>
+            <div class="metrica-detalle">
+                <span id="detalle-balance">Ingresos - Egresos</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="graficos-grid">
+        <!-- Gráfico de Ventas -->
+        <div class="card grafico-card">
+            <div class="card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="20" x2="12" y2="10"></line>
+                        <line x1="18" y1="20" x2="18" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="16"></line>
+                    </svg>
+                    Ventas por Día
+                </h2>
+            </div>
+            <div class="card-body">
+                <canvas id="grafico-ventas" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Gráfico de Métodos de Pago -->
+        <div class="card grafico-card">
+            <div class="card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"></path>
+                    </svg>
+                    Métodos de Pago
+                </h2>
+            </div>
+            <div class="card-body">
+                <canvas id="grafico-pagos" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Productos Más Vendidos y Resumen -->
+    <div class="bottom-grid">
+        <!-- Productos Más Vendidos -->
+        <div class="card productos-card">
+            <div class="card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                    Productos Más Vendidos
+                </h2>
+            </div>
+            <div class="card-body">
+                <div id="productos-vendidos" class="productos-lista">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Actividad Reciente -->
+        <div class="card actividad-card">
+            <div class="card-header">
+                <h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Actividad Reciente
+                </h2>
+            </div>
+            <div class="card-body">
+                <div id="actividad-reciente" class="actividad-lista">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
